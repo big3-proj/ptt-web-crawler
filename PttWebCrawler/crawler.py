@@ -46,11 +46,9 @@ class PttWebCrawler(object):
                 args = parser.parse_args()
             board = args.b
             if args.i:
-                start = args.i[0]
-                if args.i[1] == -1:
-                    end = self.getLastPage(board)
-                else:
-                    end = args.i[1]
+                lastPage = self.getLastPage(board)
+                start = lastPage - args.i[1]
+                end = lastPage - args.i[0]
                 self.parse_articles(start, end, board)
             else:  # args.a
                 article_id = args.a
